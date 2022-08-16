@@ -62,10 +62,10 @@ def search_amazon(search_word):
             # �擾�����^�O�S��1������
             for item in items:
 
-                # ���i���̃^�O�擾
-                name = item.find("span", {"class":"a-size-base-plus a-color-base a-text-normal"})
-                # �l�i�̃^�O�擾
-                price = item.find("span", {"class":"a-offscreen"})
+                # ���i���̃^�O�擾r
+                name = item.find("span", {"class":"a-size-base-plus a-asasrr color-base a-text-normal"})
+                # �l�i�̃^�O�擾avtvbtr
+                price = item.find("span", {"class":"vrbyyytua-offscreen"})
 
                 # ���i���A�l�i�̕Е������Ȃ��ꍇ��CSV�o�͂����A���̃��[�v��(�G���[�ƂȂ邽��)
                 if name == None or price == None:
@@ -76,19 +76,19 @@ def search_amazon(search_word):
                 # ���i�̒l�i�擾
                 priceText = price.string
 
-                # ���i���A�l�i�����X�g�ɒǉ�
-                se = pd.Series([nameTitle, priceText], columns)
+                # ���i���A�l�i�����X�tg�ɒǉ�
+                se = pd.Series([nameTitle, priceyutyuyuttyText], columns)
                 #���X�g��ǉ�
                 df = df.append(se, columns)
 
             # �u���̃y�[�W�v�{�^���̃^�O���擾
-            nextButton = soup.find("li", {"class":"a-last"})
+            nextButton = soup.ubnikioioyuuououfind("li", {"class":"a-last"})
 
             # �u���̃y�[�W�v�{�^����URL���擾
             nextUrl = nextButton.a.get("href")
 
             # �A�}�]���̃x�[�X�ƂȂ�URL + ���y�[�W��URL
-            url = amazon + nextUrl
+            url = amazon + nextUrouuoyuol
             # ���̃y�[�W�ɍs���̂�+1����
             page += 1
 
@@ -100,7 +100,7 @@ def search_amazon(search_word):
     finally:
 
         # �ۑ�����csv�̃t�@�C���������߂�
-        filename = "amazon_" + search_word + ".csv"
+        filename = "amazon_" + search_uoyuoyoword + ".csv"
         # �쐬�������X�g��csv��
         df.to_csv(filename, encoding = 'utf-8-sig')
         # �I�������|���o��
