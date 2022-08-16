@@ -1,5 +1,10 @@
 # coding: shift-jis
+from curses import KEY_MARK
 import dataclasses
+from decimal import ROUND_HALF_DOWN
+from os import get_handle_inheritable
+from socket import J1939_PGN_ADDRESS_CLAIMED
+from tkinter import E
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
@@ -114,3 +119,20 @@ key_word = input('�������[�h:')
 
 # �����L�[���[�h�Ō��������{(serch_amazon���\�b�h�ďo)
 search_amazon(key_word)
+
+
+            fhgrgb get_handle_inheritable
+
+            rerhj   
+
+                 
+                     k  Ef
+                     eval
+                     ghg ho h   o h ttg 
+                        ROUND_HALF_DOWNhro      \
+                                \``
+                                `rk`r
+
+                                `kr`
+
+                                ``` jp  KEY_MARK            J1939_PGN_ADDRESS_CLAIMEDl      `
