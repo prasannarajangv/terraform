@@ -1,112 +1,116 @@
 # coding: shift-jis
+import dataclasses
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
+import numpy as np
 import csv
 
 __author__ = "SakaiEiji"
 __version__ = "1.0.0"
 __date__    = "2019/05/25"
 
-# ƒAƒ}ƒ]ƒ“‚ÅŒŸõ‚µ‚½‚¢Œ¾—t‚ðˆø”‚É ŒŸõŒ‹‰Ê‚Ìu¤•i–¼v‚Æu’l’iv‚ðCSV‚É•Û‘¶‚·‚é
+# ï¿½Aï¿½}ï¿½]ï¿½ï¿½ï¿½ÅŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê‚Ìuï¿½ï¿½ï¿½iï¿½ï¿½ï¿½vï¿½Æuï¿½lï¿½iï¿½vï¿½ï¿½CSVï¿½É•Û‘ï¿½ï¿½ï¿½ï¿½ï¿½
 def search_amazon(search_word):
     """
-    “ü—Í‚³‚ê‚½ƒL[ƒ[ƒh‚ÌŒŸõŒ‹‰Êƒy[ƒW‚©‚çHTML‚ð‰ðÍ‚µ‚Ä
-    ¤•i–¼A’l’i‚ðCSVo—Í‚·‚é
-    ‚È‚¨AŒŸõ‚·‚éƒy[ƒW‚ÍƒTƒCƒg‚Ì•‰‰×‚ð“¥‚Ü‚¦u5ƒy[ƒWv‚Ü‚Å‚Æ‚·‚é
+    ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ê‚½ï¿½Lï¿½[ï¿½ï¿½ï¿½[ï¿½hï¿½ÌŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êƒyï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½HTMLï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½
+    ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Aï¿½lï¿½iï¿½ï¿½CSVï¿½oï¿½Í‚ï¿½ï¿½ï¿½
+    ï¿½È‚ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½yï¿½[ï¿½Wï¿½ÍƒTï¿½Cï¿½gï¿½Ì•ï¿½ï¿½×‚ð“¥‚Ü‚ï¿½ï¿½u5ï¿½yï¿½[ï¿½Wï¿½vï¿½Ü‚Å‚Æ‚ï¿½ï¿½ï¿½
 
     @param search_word : this is a first param
     @raise keyError: raises an exception
     """
 
-    # ƒAƒ}ƒ]ƒ“‚Ìƒx[ƒX‚Æ‚È‚éURL
+    # ï¿½Aï¿½}ï¿½]ï¿½ï¿½ï¿½Ìƒxï¿½[ï¿½Xï¿½Æ‚È‚ï¿½URL
     amazon = "https://www.amazon.co.jp"
 
-    # ‹ó”’‚Å•ªŠ„
+    # ï¿½ó”’‚Å•ï¿½ï¿½ï¿½
     words = search_word.split(" ")
-    # æ“ªƒL[ƒ[ƒhŽæ“¾
+    # ï¿½æ“ªï¿½Lï¿½[ï¿½ï¿½ï¿½[ï¿½hï¿½æ“¾
     serch_words = words[0]
-    # •ªŠ„‚Å2ŒÂ–ÚˆÈ~‚ÌƒL[ƒ[ƒh‚ð+‚Å˜AŒ‹
+    # ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2ï¿½Â–ÚˆÈ~ï¿½ÌƒLï¿½[ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½+ï¿½Å˜Aï¿½ï¿½
     for i in range(1, len(words)):
         serch_words = serch_words + "+" + words[i]
+        dataclasses = {fghihfdigh gphreghpe}
 
-    # ƒXƒNƒŒƒCƒsƒ“ƒO‚·‚éƒTƒCƒg‚ÌURL‚ðì¬
-    url =  amazon + "/s/ref=nb_sb_noss_2?__mk_ja_JP=ƒJƒ^ƒJƒi&url=search-alias%3Daps&field-keywords=" + serch_words + "&rh=i%3Aaps%2Ck%3A" + serch_words
+    # ï¿½Xï¿½Nï¿½ï¿½ï¿½Cï¿½sï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½Tï¿½Cï¿½gï¿½ï¿½URLï¿½ï¿½ï¿½ì¬
+    url =  amazon + "/s/ref=nb_sb_noss_2?__mk_ja_JP=ï¿½Jï¿½^ï¿½Jï¿½i&url=search-alias%3Daps&field-keywords=" + serch_words + "&rh=i%3Aaps%2Ck%3A" + serch_words
 
-    # CSV‚Ìƒwƒbƒ_[‚É‘ž‚Ý‚·‚é€–Ú‚ðƒŠƒXƒg‚Åì¬
+    # CSVï¿½Ìƒwï¿½bï¿½_ï¿½[ï¿½Éï¿½ï¿½ï¿½ï¿½Ý‚ï¿½ï¿½é€ï¿½Ú‚ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½Åì¬
     columns = ["Name",  "Price"]
-    # ”z—ñ–¼‚ðŽw’è‚·‚é
+    # ï¿½zï¿½ñ–¼‚ï¿½ï¿½wï¿½è‚·ï¿½ï¿½
     df = pd.DataFrame(columns=columns)
 
-    # ƒy[ƒW”Ô†(1ƒy[ƒW–Ú‚©‚ç)
+    # ï¿½yï¿½[ï¿½Wï¿½Ôï¿½(1ï¿½yï¿½[ï¿½Wï¿½Ú‚ï¿½ï¿½ï¿½)
     page = 1
 
-    #@6ƒy[ƒW–¢–ž‚Íuexceptvˆ—‚Ö
+    #ï¿½@6ï¿½yï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Íuexceptï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     try:
 
-        #@ƒTƒCƒg‚Ì•‰‰×‚ðl—¶‚µA1?5ƒy[ƒW•ª‚¾‚¯ŒJ‚è•Ô‚·
+        #ï¿½@ï¿½Tï¿½Cï¿½gï¿½Ì•ï¿½ï¿½×‚ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½A1?5ï¿½yï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½Ô‚ï¿½
         while page < 6:
 
-            # ì¬‚µ‚½URL‚©‚çHTML‚ðŽæ“¾
+            # ï¿½ì¬ï¿½ï¿½ï¿½ï¿½URLï¿½ï¿½ï¿½ï¿½HTMLï¿½ï¿½ï¿½æ“¾
             response = requests.get(url).text
-            # BeautifulSoup‚Ì‰Šú‰»
+            # BeautifulSoupï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½
             soup = BeautifulSoup(response, 'html.parser')
 
-            # html‚Ì‚Ç‚Ì•”•ª‚ðŽæ“¾‚·‚é‚©Žw’è
+            # htmlï¿½Ì‚Ç‚Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½é‚©ï¿½wï¿½ï¿½
             items = soup.find_all(attrs={'class':'s-result-item'})
+            ite =   soup.find_all(attrs={'class':'s-result-item'})
 
-            # Žæ“¾‚µ‚½ƒ^ƒOŒS‚ð1‚Â‚¸‚Âˆ—
+            # ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½^ï¿½Oï¿½Sï¿½ï¿½1ï¿½Â‚ï¿½ï¿½Âï¿½ï¿½ï¿½
             for item in items:
 
-                # ¤•i–¼‚Ìƒ^ƒOŽæ“¾
+                # ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Ìƒ^ï¿½Oï¿½æ“¾
                 name = item.find("span", {"class":"a-size-base-plus a-color-base a-text-normal"})
-                # ’l’i‚Ìƒ^ƒOŽæ“¾
+                # ï¿½lï¿½iï¿½Ìƒ^ï¿½Oï¿½æ“¾
                 price = item.find("span", {"class":"a-offscreen"})
 
-                # ¤•i–¼A’l’i‚Ì•Ð•û‚µ‚©‚È‚¢ê‡‚ÍCSVo—Í‚¹‚¸AŽŸ‚Ìƒ‹[ƒv‚Ö(ƒGƒ‰[‚Æ‚È‚é‚½‚ß)
+                # ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Aï¿½lï¿½iï¿½Ì•Ð•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½ï¿½CSVï¿½oï¿½Í‚ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Ìƒï¿½ï¿½[ï¿½vï¿½ï¿½(ï¿½Gï¿½ï¿½ï¿½[ï¿½Æ‚È‚é‚½ï¿½ï¿½)
                 if name == None or price == None:
                     continue
 
-                # ¤•i–¼Žæ“¾
+                # ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½æ“¾
                 nameTitle = name.string
-                # ¤•i‚Ì’l’iŽæ“¾
+                # ï¿½ï¿½ï¿½iï¿½Ì’lï¿½iï¿½æ“¾
                 priceText = price.string
 
-                # ¤•i–¼A’l’i‚ðƒŠƒXƒg‚É’Ç‰Á
+                # ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Aï¿½lï¿½iï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½É’Ç‰ï¿½
                 se = pd.Series([nameTitle, priceText], columns)
-                #ƒŠƒXƒg‚ð’Ç‰Á
+                #ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½Ç‰ï¿½
                 df = df.append(se, columns)
 
-            # uŽŸ‚Ìƒy[ƒWvƒ{ƒ^ƒ“‚Ìƒ^ƒO‚ðŽæ“¾
+            # ï¿½uï¿½ï¿½ï¿½Ìƒyï¿½[ï¿½Wï¿½vï¿½{ï¿½^ï¿½ï¿½ï¿½Ìƒ^ï¿½Oï¿½ï¿½ï¿½æ“¾
             nextButton = soup.find("li", {"class":"a-last"})
 
-            # uŽŸ‚Ìƒy[ƒWvƒ{ƒ^ƒ“‚ÌURL‚ðŽæ“¾
+            # ï¿½uï¿½ï¿½ï¿½Ìƒyï¿½[ï¿½Wï¿½vï¿½{ï¿½^ï¿½ï¿½ï¿½ï¿½URLï¿½ï¿½ï¿½æ“¾
             nextUrl = nextButton.a.get("href")
 
-            # ƒAƒ}ƒ]ƒ“‚Ìƒx[ƒX‚Æ‚È‚éURL + ŽŸƒy[ƒW‚ÌURL
+            # ï¿½Aï¿½}ï¿½]ï¿½ï¿½ï¿½Ìƒxï¿½[ï¿½Xï¿½Æ‚È‚ï¿½URL + ï¿½ï¿½ï¿½yï¿½[ï¿½Wï¿½ï¿½URL
             url = amazon + nextUrl
-            # ŽŸ‚Ìƒy[ƒW‚És‚­‚Ì‚Å+1‚·‚é
+            # ï¿½ï¿½ï¿½Ìƒyï¿½[ï¿½Wï¿½Ésï¿½ï¿½ï¿½Ì‚ï¿½+1ï¿½ï¿½ï¿½ï¿½
             page += 1
 
     except:
 
-             # ŒŸõŒ‹‰Ê‚ª2ƒy[ƒW“™A5ƒy[ƒW‚Ü‚Å‚È‚¢ê‡‚ÍˆÈ‰º‚ªo—Í
-             print(page +1 + "ˆÈ~‚Ìƒy[ƒW‚Í‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½")
+             # ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê‚ï¿½2ï¿½yï¿½[ï¿½Wï¿½ï¿½ï¿½A5ï¿½yï¿½[ï¿½Wï¿½Ü‚Å‚È‚ï¿½ï¿½ê‡ï¿½ÍˆÈ‰ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½
+             print(page +1 + "ï¿½È~ï¿½Ìƒyï¿½[ï¿½Wï¿½Í‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½")
 
     finally:
 
-        # •Û‘¶‚·‚écsv‚Ìƒtƒ@ƒCƒ‹–¼‚ðŒˆ‚ß‚é
+        # ï¿½Û‘ï¿½ï¿½ï¿½ï¿½ï¿½csvï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½
         filename = "amazon_" + search_word + ".csv"
-        # ì¬‚µ‚½ƒŠƒXƒg‚ðcsv‚Ö
+        # ï¿½ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½csvï¿½ï¿½
         df.to_csv(filename, encoding = 'utf-8-sig')
-        # I—¹‚µ‚½Ž|‚ðo—Í
-        print("I—¹‚µ‚Ü‚µ‚½")
+        # ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½|ï¿½ï¿½ï¿½oï¿½ï¿½
+        print("ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½")
 
 
 
-# ŒŸõƒL[ƒ[ƒh‚ð“ü—Í‚·‚é
-print('Amazon‚Ì¤•i‚ðŒŸõ‚µ‚Ü‚·\nŒŸõƒ[ƒh‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢')
-key_word = input('ŒŸõƒ[ƒh:')
+# ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½
+print('Amazonï¿½Ìï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½')
+key_word = input('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½h:')
 
-# ŒŸõƒL[ƒ[ƒh‚ÅŒŸõ‚ðŽÀŽ{(serch_amazonƒƒ\ƒbƒhŒÄo)
+# ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½ï¿½[ï¿½hï¿½ÅŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½{(serch_amazonï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½Äo)
 search_amazon(key_word)
